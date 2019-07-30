@@ -52,6 +52,22 @@ function getAlerts(){
     });
 }
 setInterval(getAlerts,3000);
+
+function getUnReadMessagesWithParticipants(){
+    URL = "{{route('checkforunread')}}"
+    $.get(URL,function(res){
+        if(res.isFound){
+            $('#countbadgetopbar').text(res.unreadcount);
+            $('#clist').html(res.updateparticipants);
+        }else {
+            //do nothing...
+        }
+    });
+}
+
+setInterval(getUnReadMessagesWithParticipants,10000);
+
+
 @endif
         $(document).ready(function(){
 @if(User::checkPermission($user,'send_sms') == 1)

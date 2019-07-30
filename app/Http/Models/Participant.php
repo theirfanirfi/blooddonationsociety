@@ -52,6 +52,22 @@ class Participant extends Model
     }
 
     public static function getChatWithCurrentUserForAdmin($pid,$user_id){
-        return Chat::where(['p_id' => $pid,'reciever_id' => $user_id])->orWhere(['p_id' => $pid,'sender_id' => $user_id]);
+        return Chat::where(['p_id' => $pid,'reciever_id' => $user_id])
+        ->orWhere(function($query) use ($pid, $user_id){
+            $query->where(['p_id' => $pid,'sender_id' => $user_id]);
+        });
+    }
+
+    public function getParticipantUnReadMessagesCount(){
+        // return $pts = pt::where(['admin_id' => $user->id])
+        // ->leftjoin('chat',['chat.p_id' => 'participants.id'])
+        // ->where(function($query) {
+        //     $query->where(['is_read' => 0]);
+        // });
+        return Chat::where(['sender_id' => $this->user_id,'is_read' => 0])->count();
+    }
+
+    public static function updateChatReadStatus($pid){
+        return Chat::where(['p_id' => $pid])->update(['is_read' => 1]);
     }
 }

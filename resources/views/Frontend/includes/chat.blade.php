@@ -4,7 +4,8 @@ use App\Http\Models\Participant as Pt;
 $sid = "";
 
 if(Auth::check()){
-    $sid = Auth::user()->id;
+    $user = Auth::user();
+    $sid = $user->is_super_admin == 1 || $user->is_admin_group == 1 ? session()->getId() : $user->id;
 }else {
     $sid = session()->getId();
 }

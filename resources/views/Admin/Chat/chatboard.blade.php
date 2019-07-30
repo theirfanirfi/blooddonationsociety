@@ -274,8 +274,12 @@ Website: http://emilcarlsson.se/
 
             @if($chats->count() > 0)
             <?php
+            $chatsupdatevar = $chats;
             $chats = $chats->get();
+            //dd($chats);
             ?>
+
+            <?php //exit(); ?>
 			<ul id="ulbodymessage">
                     @foreach($chats as $c)
                     @if($c->sender_id == $user->id)
@@ -306,9 +310,9 @@ Website: http://emilcarlsson.se/
 </div>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script >
-        $('#sendmessage').click(function(){
+$('#sendmessage').click(function(){
 var message = $('#msg');
-if(message.empty()){
+if(message.val() == ""){
     alert('Message cannot be empty.');
 }else {
 var URL = "{{route('sendmsg')}}";
@@ -397,5 +401,7 @@ $(window).on('keydown', function(e) {
 //# sourceURL=pen.js
 </script>
 </body></html>
-
+<?php
+$chatsupdatevar->update(['is_read' => 1]);
+?>
 @endsection

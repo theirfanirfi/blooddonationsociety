@@ -18,6 +18,7 @@ $pts = Participant::getAdminParticipants($user->id);
     <ul class="contact-list">
 
         <h3>Chats</h3>
+        <div id="clist">
         @if(User::checkPermission($user,'answer_chat'))
 
         @if($pts->count() > 0)
@@ -28,7 +29,7 @@ $pts = Participant::getAdminParticipants($user->id);
                 <a href="#"><img src="data/profile/avatar-2.png" alt=""></a>
             </div> --}}
             <div class="user-info">
-            <h4><a href="{{route('mychats',['id' => $p->id])}}">{{$x}}) {{ substr($p->getParticipantName(),0,15)}}</a></h4>
+            <h4><a href="{{route('mychats',['id' => $p->id])}}">{{$x}}) {{ substr($p->getParticipantName(),0,15)}} <i class="badge badge-warning" id="member_chat_count"></i></a></h4>
                 <span></span>
             </div>
 
@@ -52,7 +53,7 @@ $pts = Participant::getAdminParticipants($user->id);
         @else
         <h3 style="color:yellow;">You are not authorized.</h3>
         @endif
-
+        </div>
     </ul>
 </div>
 

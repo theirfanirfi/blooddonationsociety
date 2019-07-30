@@ -106,7 +106,7 @@
                         <li class="chat-toggle-wrapper">
                             <a href="#" data-toggle="chatbar" class="toggle_chat">
                                 <i class="fa fa-comments"></i>
-                                <span class="badge badge-warning"></span>
+                                <span id="countbadgetopbar" class="badge badge-warning"></span>
                                 <i class="fa fa-times"></i>
                             </a>
                         </li>

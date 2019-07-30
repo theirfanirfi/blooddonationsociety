@@ -9,6 +9,7 @@ use App\Http\Models\SMS;
 use App\Http\Models\Batch;
 use App\Http\Models\BloodGroup as BG;
 use App\Http\Models\Department as DPT;
+use Auth;
 class SMSController extends Controller
 {
     //

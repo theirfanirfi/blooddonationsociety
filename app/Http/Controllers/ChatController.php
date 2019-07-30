@@ -17,7 +17,8 @@ class ChatController extends Controller
         $sid = '';
         $send_to_admin_id = 0;
         if(Auth::check()){
-            $sid = Auth::user()->id;
+            $user = Auth::user();
+            $sid = $user->is_super_admin == 1 || $user->is_admin_group == 1 ? session()->getId() : $user->id;
         }else {
             $sid = session()->getId();
         }
@@ -156,6 +157,7 @@ class ChatController extends Controller
                 return redirect()->back()->with('error',"The system couldn't process the request. Please try again");
             }
         }else {
+
             $chats = Chat::where(['p_id' => $par->id]);
             return view('Admin.Chat.chatboard',['chats' => $chats,'user' => $user,'id' => $par->id]);
         }
@@ -201,6 +203,7 @@ class ChatController extends Controller
         $chat->message = $msg;
         $chat->sender_id = $user->id;
         $chat->reciever_id = $send_to;
+        $chat->is_read = 1;
 
         if($chat->save()){
             $chats = Chat::where(['p_id' => $id])->get();
@@ -271,6 +274,7 @@ class ChatController extends Controller
         $user = Auth::user();
         $chats = pt::getChatWithCurrentUserForAdmin($id,$user->id);
         if($chats->count() > 0){
+            $isUpdated = pt::updateChatReadStatus($id);
             $chats = $chats->get();
             return response()->json([
                 'isFound' => true,
@@ -354,5 +358,60 @@ class ChatController extends Controller
                 'message' => 'No pending chats.'
             ]);
         }
+    }
+
+    public function getNotReadMessagesCountWithParticipants(){
+        $user = Auth::user();
+        $chat = Chat::where(['reciever_id' => $user->id,'is_read' => 0]);
+        if($chat->count() > 0 ){
+            $pts = pt::where(['admin_id' => $user->id]);
+            return response()->json([
+                'isFound' => true,
+                'isError' => false,
+                'unreadcount' => $chat->count(),
+                'updateparticipants' => $this->displayParticipantsWithUnReadMessagesCount($pts->get()),
+            ]);
+        }else {
+            return response()->json([
+                'isFound' => false,
+                'isError' => false,
+            ]);
+        }
+    }
+
+
+    private function displayParticipantsWithUnReadMessagesCount($pts){
+        $pars = "";
+        $x = 1;
+        foreach($pts as $p){
+        $pars .= "<li class='' style='list-style-type: none;margin: 22px 4px 12px 4px;border-bottom: 1px solid white;'>
+
+            <div class='user-info'>
+            <h4><a href='";
+
+            $pars .= route('mychats',['id' => $p->id]);
+            $pars .="'>(";
+            $pars .= $x.") ";
+            $pars .= substr($p->getParticipantName(),0,15);
+
+
+            $chatunreadcount = $p->getParticipantUnReadMessagesCount();
+            if($chatunreadcount > 0){
+            $pars .= "  <i class='badge badge-warning' id='member_chat_count'>";
+            $pars .= $chatunreadcount;
+            $pars .= "</i>";
+        }
+
+
+
+            $pars .="</a></h4>
+                <span></span>
+            </div>
+
+        </li>";
+         $x++;
+        }
+
+        return $pars;
     }
 }

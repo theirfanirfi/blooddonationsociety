@@ -137,6 +137,9 @@ Route::get('getmessages/{id}','ChatController@getLoggedInIntervalAdminMessages')
 
 Route::get('getchatalerts','ChatController@getChatAlertForAdmin')->name('getchatalerts');
 
+//update participants if there are unread messages
+
+Route::get('checkforunread','ChatController@getNotReadMessagesCountWithParticipants')->name('checkforunread');
 
 
 });
