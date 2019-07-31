@@ -73,7 +73,7 @@
                                 <ul id="ul">
                                 <li><a href="{{route('home')}}">Home</a></li>
                                 <li><a href="{{route('gallery')}}">Gallery</a></li>
-                                <li><a href="{{route('aboutus')}}">About Us</a></li>
+                                {{-- <li><a href="{{route('aboutus')}}">About Us</a></li> --}}
                                         @if(Auth::check())
                                 <li><a href="{{route('logout')}}">Logout</a></li>
                                         @else

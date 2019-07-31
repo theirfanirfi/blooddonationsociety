@@ -14,15 +14,16 @@
 
                                 </div>
                             </header>
-                            <div class="content-body">    <div class="row">
+                            <div class="content-body">
+                                <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
 
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
                                                 <div class="team-member ">
                                                     <div class="team-img">
                                                     <b><h2>{{$seePost->post_title}}</h2></b>
-                                                        <img src="{{URL::asset('posts/'.$seePost->image)}}" height='300px' alt="">
+                                                        <img src="{{URL::asset('posts/'.$seePost->image)}}" height='400px' style="width:100%;" alt="">
                                                     </div>
                                                     <div>
                                                    <b> <h3>Post Excerpt</h3></b>
@@ -30,7 +31,7 @@
                                                     </div>
                                                     <div>
                                                    <b> <h3>Post Description</h3></b>
-                                                       {{$seePost->excerpt}}
+                                                       <?php echo $seePost->description ?>
                                                     </div>
                                                 </div>
                                             </div>

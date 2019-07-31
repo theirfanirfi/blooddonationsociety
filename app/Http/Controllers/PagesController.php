@@ -12,7 +12,7 @@ class PagesController extends Controller
 
     public function aboutpageupdate(Request $req){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -49,7 +49,7 @@ class PagesController extends Controller
 
     public function privacypageupdate(Request $req){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -87,7 +87,7 @@ class PagesController extends Controller
 
     public function contactuspageupdate(Request $req){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -125,7 +125,7 @@ class PagesController extends Controller
 
     public function termspageupdate(Request $req){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }

@@ -23,11 +23,9 @@
 
                                             <div class="form-group">
                                                 <label class="form-label" for="field-6">Description</label>
-                                                <span class="desc">e.g. "Enter any size of text description here"</span>
+                                                <span class="desc">e.g. "The limit of the description is 600 characters."</span>
                                                 <div class="controls">
-                                                    <textarea name="description" class="bootstrap-wysihtml5-textarea" placeholder="Enter text ..." style="width: 100%; height: 500px; font-size: 14px; line-height: 23px;padding:15px;">
-                                                    {{$page->description}}
-                                                    </textarea>
+                                                    <textarea name="description" maxlength="600" placeholder="Enter text ..." style="width: 100%; height: 500px; font-size: 14px; line-height: 23px;padding:15px;">{{$page->description}}</textarea>
                                                 </div>
                                             </div>
 

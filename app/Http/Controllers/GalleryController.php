@@ -12,7 +12,7 @@ class GalleryController extends Controller
 
     public function addimagetogallery(){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -25,7 +25,7 @@ class GalleryController extends Controller
 
     public function addimagetogalleryPost(Request $req){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }

@@ -11,6 +11,8 @@ use App\Http\Models\Department;
 use App\Http\Models\BloodGroup;
 use App\Http\Models\Gallery;
 use App\Http\Models\Post;
+use App\Http\Models\Page;
+use App\Http\Models\Setting;
 use App\Http\Models\FrontSlider as FS;
 use App\Http\Models\FrontMessages as FM;
 class FrontendController extends Controller
@@ -26,9 +28,12 @@ class FrontendController extends Controller
         $fms = FM::orderBy('id','DESC')->limit(2)->get();
         $gallery = Gallery::all();
         $posts = Post::orderBy('id','DESC')->limit(6)->get();
+        $about = Page::where(['type' => 1])->first();
+        // $settings = Setting::first();
         return view('Frontend.MasterLayout',['msgs' => $fms,'gallery' => $gallery,'batches' => $batches,
         'semesters' => $semesters, 'dpts' => $dpts,'bgs' => $bgs,'slider' => $slider,
-        'posts' => $posts,
+        'posts' => $posts,'about' => $about,
+        // 'setting' => $settings,
         ]);
     }
 
@@ -56,7 +61,21 @@ class FrontendController extends Controller
         $dpts = Department::all();
         $bgs = BloodGroup::all();
         return view('Frontend.pages.signupform',['batches' => $batches,
-        'semesters' => $semesters, 'dpts' => $dpts,'bgs' => $bgs,]);
+        'semesters' => $semesters, 'dpts' => $dpts,'bgs' => $bgs]);
+    }
+
+    public function post($id){
+        if($id == null || !is_numeric($id) || empty($id)){
+            return redirect('/');
+        }else {
+            $post = Post::where(['id' => $id]);
+            if($post->count() > 0){
+                $post = $post->first();
+                return view('Frontend.post.singlepost',['p' => $post]);
+            }else {
+            return redirect('/');
+            }
+        }
     }
 
 

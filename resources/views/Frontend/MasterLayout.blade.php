@@ -1,4 +1,9 @@
 @include('Frontend.includes.header')
+<?php
+use App\Http\Models\Setting;
+$setting = Setting::first();
+?>
+
 @include('Frontend.includes.slider')
 @include('Frontend.includes.messages')
 @include('Frontend.includes.aboutus')

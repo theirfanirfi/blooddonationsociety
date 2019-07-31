@@ -151,16 +151,16 @@
                         <li class="">
                                 <a href="javascript:;">
                                     <i class="fa fa-file"></i>
-                                    <span class="title">Pages</span>
+                                    <span class="title">Sections</span>
                                     <span class="arrow ">
                                 </a>
                                 <ul class="sub-menu" >
 
                                     <li>
-                                    <a class="" href="{{route('aboutuspage')}}" >Update About Us page</a>
-                                    <a class="" href="{{route('privacy')}}" >Update Privacy page</a>
+                                    <a class="" href="{{route('aboutuspage')}}" >About Us</a>
+                                    {{-- <a class="" href="{{route('privacy')}}" >Update Privacy page</a>
                                     <a class="" href="{{route('contactus')}}" >Update Contact Us page</a>
-                                    <a class="" href="{{route('terms')}}" >Update Terms and condition page</a>
+                                    <a class="" href="{{route('terms')}}" >Update Terms and condition page</a> --}}
                                     </li>
 
                                 </ul>

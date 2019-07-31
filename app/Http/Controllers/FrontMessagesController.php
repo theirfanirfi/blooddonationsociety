@@ -12,7 +12,7 @@ class FrontMessagesController extends Controller
 
     public function index(){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -25,7 +25,7 @@ class FrontMessagesController extends Controller
 
     public function addmessage(){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -37,7 +37,7 @@ class FrontMessagesController extends Controller
 
     public function addmessagePost(Request $req){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -55,10 +55,10 @@ class FrontMessagesController extends Controller
             $image_name = $file->getClientOriginalName();
             $image_ext = $file->getClientOriginalExtension();
             $image_size = $file->getSize();
-            if($image_size > 20000){
+            // if($image_size > 20000){
 
-            return redirect()->back()->with('error','Image must be equal or less than 2MBs. '.$image_size );
-            }else {
+            // return redirect()->back()->with('error','Image must be equal or less than 2MBs. '.$image_size );
+            // }else {
             $destinationPath = './messages';
             if($file->move($destinationPath,$image_name)){
                 $fm = new FM();
@@ -71,7 +71,7 @@ class FrontMessagesController extends Controller
                     return redirect()->back()->with('error','Error occurred in saving the message. Please try again.');
                 }
             }
-        }
+        //}
         }else {
             return redirect()->back()->with('error','Image must be provided.');
 

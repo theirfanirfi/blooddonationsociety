@@ -162,3 +162,8 @@ Route::get('forgotpassword','ForgotPasswordController@fpview')->name('forgotpass
 Route::get('entercode/{token}','ForgotPasswordController@entercodeview')->name('entercode');
 Route::post('initiatepasswordreseting','ForgotPasswordController@initiatepasswordreseting')->name('initiatepasswordreseting');
 Route::post('resetpass','ForgotPasswordController@resetpass')->name('resetpass');
+
+
+//frontend posts
+
+Route::get('post/{id}','FrontendController@post')->name('post');

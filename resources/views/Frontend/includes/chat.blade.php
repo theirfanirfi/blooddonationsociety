@@ -190,7 +190,8 @@ $chat = Pt::getParticipantAndItsChatIfExist($sid);
 
 
                         @else
-                        <h1>Please contact us</h1>
+                        <h4>Here, you can chat with us directly.</h4>
+                        <h5>No login or registration is required.</h5>
                         @endif
 
 

@@ -12,7 +12,7 @@
                     <img class="img-responsive" src="{{URL::asset('posts')}}/{{$p->image}}" alt="Image" style="width:100%;">
                         <div class="g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-center--xs g-padding-x-40--xs g-padding-y-40--xs">
 
-                        <h3 class="g-font-size-22--xs g-letter-spacing--1"><a href="#">{{$p->post_title}}</a></h3>
+                        <h3 class="g-font-size-22--xs g-letter-spacing--1"><a href="{{route('post',['id' => $p->id])}}">{{$p->post_title}}</a></h3>
                         <p>{{$p->excerpt}}</p>
                         </div>
                     </article>

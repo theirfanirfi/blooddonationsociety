@@ -11,7 +11,7 @@
                         <div class="page-title">
 
                             <div class="pull-left">
-                                <h1 class="title">User Profile</h1>                            </div>
+                                <h1 class="title">Donor Profile</h1>                            </div>
 
                             <div class="pull-right hidden-xs">
                                 <ol class="breadcrumb">
@@ -22,7 +22,7 @@
                                         <a href="blo-users.html">Users</a>
                                     </li>
                                     <li class="active">
-                                        <strong>User Profile</strong>
+                                        {{-- <strong>User Profile</strong> --}}
                                     </li>
                                 </ol>
                             </div>
@@ -83,7 +83,7 @@
 
                                             <div class="">
 
-                                                <h2>User Information:</h2>
+                                                <h2>Donor Information:</h2>
                                                 <div class="content-body">
                                 <div class="row">
                                 <form action="" method="post" enctype="multipart/form-data">

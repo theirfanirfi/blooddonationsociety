@@ -45,7 +45,7 @@
                                                 <label class="form-label" for="field-6">Brief</label>
                                                 <span class="desc">e.g. "Enter a brief Message here"</span>
                                                 <div class="controls">
-                                                    <textarea name="message" placeholder="Enter text ..." maxlength="250" style="width: 100%; height: 250px; font-size: 14px; line-height: 23px;padding:15px;"></textarea>
+                                                    <textarea name="message" placeholder="Enter text ..." maxlength="450" style="width: 100%; height: 250px; font-size: 14px; line-height: 23px;padding:15px;"></textarea>
                                                 </div>
                                             </div>
 

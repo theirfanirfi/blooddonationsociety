@@ -18,7 +18,7 @@
                 <!-- Item -->
                 <div class="s-portfolio__item cbp-item motion graphic">
                     <div class="s-portfolio__img-effect">
-                    <img src="{{URL::asset('gallery')}}/{{$g->image_url}}" alt="{{$g->image_title}}" class="img-responsive" style="width:100%;height:350px;">
+                    <img src="{{URL::asset('gallery')}}/{{$g->image_url}}" alt="{{$g->image_title}}" class="img-responsive" style="width:100%;height:300px;">
                     </div>
                     <div class="s-portfolio__caption-hover--cc">
                         <div class="g-margin-b-25--xs">
@@ -32,7 +32,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" class="s-icon s-icon--sm s-icon s-icon--white-bg g-radius--circle">
+                                <a href="" class="s-icon s-icon--sm s-icon s-icon--white-bg g-radius--circle">
                                     <i class="ti-link"></i>
                                 </a>
                             </li>

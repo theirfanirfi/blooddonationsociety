@@ -17,22 +17,43 @@
                             <div class="content-body">    <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
 
-                                        <div class="row">
-                                            @foreach($img as $img)
-                                            <div class="col-sm-6 col-md-4 col-lg-3">
-                                                <div class="team-member ">
-                                                    <div class="team-img">
-                                                        <img class="" src="{{URL::asset('posts/'.$img->image_url)}}" height='100px' alt="">
-                                                    </div>
-                                                    <div class="team-info">
-                                                        <h4><a href="hos-patient-profile.html">{{$img->image_title}}</a></h4>
-                                                        <span class='team-member-edit'><a href="{{route('editImage',['id'=>$img->id])}}" ><i class='fa fa-pencil icon-xs'></i> </i> </a>&nbsp&nbsp&nbsp <a href="{{route('deleteImage',['id'=>$img->id])}}" ><i class='fa fa-trash icon-xs'></i></a></span>
-                                                        <span>{{$img->image_description}}<a href="{{route('see_gallery',['id'=>$img->id])}}" > <u>see more</u></a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                             @endforeach
-</div>
+
+                                            <table id="example-1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <tr>
+                                                            <th>S.NO</th>
+                                                            <th>Title</th>
+                                                            <th>Image</th>
+                                                            <th>Description</th>
+                                                            <th>Action</th>
+
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $x =1; ?>
+                                                    @foreach($img as $img)
+                                                        <tr>
+                                                        <td>{{$x}}</td>
+                                                            <td>
+                                                                    <img class="" src="{{URL::asset('gallery/'.$img->image_url)}}" style="width:150px;" height='150px' alt="">
+                                                            </td>
+                                                            <td>
+                                                                    <a href="{{route('see_gallery',['id'=>$img->id])}}">{{$img->image_title}}</a>
+                                                            </td>
+                                                            <td>
+                                                                    <?php echo substr($img->image_description,0,100) ?><a href="{{route('see_gallery',['id'=>$img->id])}}" > <u>see more</u></a>
+                                                            </td>
+                                                            <td>
+                                                            <a href="{{route('editImage',['id'=>$img->id])}}"> <i class='fa fa-edit'></i></a>&nbsp&nbsp&nbsp
+                                                            <a href="{{route('deleteImage',['id'=>$img->id])}}"><i class='fa fa-trash icon-xs'></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <?php $x++; ?>
+                                                     @endforeach
+                                                    </tbody>
+                                                </table>
 
                                     </div>
                                 </div>
