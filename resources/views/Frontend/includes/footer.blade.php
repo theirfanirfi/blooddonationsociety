@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <a href="index.html">
-                    <img class="g-width-100--xs g-height-auto--xs" src="img/logo.png" alt="Megakit Logo">
+                    <img class="g-width-100--xs g-height-auto--xs" src="{{URL::asset('img/jclogo.png')}}" alt="JC B.D.S">
                 </a>
             </div>
             <div class="col-xs-6 g-text-right--xs">

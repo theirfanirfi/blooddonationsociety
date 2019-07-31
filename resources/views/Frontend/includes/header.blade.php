@@ -57,8 +57,8 @@
                             <!-- Logo -->
                             <div class="s-header__logo">
                             <a href="{{route('home')}}" class="s-header__logo-link">
-                                    <img class="s-header__logo-img s-header__logo-img-default" src="img/logo.png" alt="B.D.S">
-                                    <img class="s-header__logo-img s-header__logo-img-shrink" src="img/logo-dark.png" alt="Megakit Logo">
+                                    <img class="s-header__logo-img s-header__logo-img-default img-responsive" src="{{URL::asset('img/jclogo.png') }}" style="width:60%;" alt="B.D.S">
+                                    <img class="s-header__logo-img s-header__logo-img-shrink img-responsive" src="{{URL::asset('img/jclogo.png') }}" alt="B.D.S">
                                 </a>
 
 

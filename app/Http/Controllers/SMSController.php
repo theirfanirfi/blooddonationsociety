@@ -102,9 +102,9 @@ class SMSController extends Controller
 
 $username = "923468723948";///Your Username
 $password = "5721";
-//$mobile = $req->input('mobile'); ///Recepient Mobile Number
-$mobile = '8768';///Recepient Mobile Number
-$sender = "Gulabdin";
+$mobile = $req->input('mobile'); ///Recepient Mobile Number
+//$mobile = '8768';///Recepient Mobile Number
+$sender = "JC BDS";
 $message = $req->input('msg');
 $id = $req->input('id');
 $user = User::find($id);

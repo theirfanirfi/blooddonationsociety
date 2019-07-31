@@ -155,3 +155,10 @@ Route::get('chat/getmessages','ChatController@getNonLoggedInUserMessages')->name
 
 Route::get('galleryview','GalleryController@gallery')->name('gallery');
 Route::get('aboutus','GalleryController@gallery')->name('aboutus');
+
+
+//forgot password
+Route::get('forgotpassword','ForgotPasswordController@fpview')->name('forgotpass');
+Route::get('entercode/{token}','ForgotPasswordController@entercodeview')->name('entercode');
+Route::post('initiatepasswordreseting','ForgotPasswordController@initiatepasswordreseting')->name('initiatepasswordreseting');
+Route::post('resetpass','ForgotPasswordController@resetpass')->name('resetpass');

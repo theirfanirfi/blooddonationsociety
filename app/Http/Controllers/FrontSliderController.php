@@ -12,7 +12,7 @@ class FrontSliderController extends Controller
 
     public function index(){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -24,7 +24,7 @@ class FrontSliderController extends Controller
 
     public function addsliderimage(){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -36,7 +36,7 @@ class FrontSliderController extends Controller
 
     public function addsliderimagePost(Request $req){
         $user = Auth::user();
-        if(User::checkPermission($user,'can_change_frontend') == 0){
+        if(User::checkPermission($user,'change_frontend') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -71,7 +71,7 @@ class FrontSliderController extends Controller
 
 public function deletesliderimage($id){
     $user = Auth::user();
-    if(User::checkPermission($user,'can_change_frontend') == 0){
+    if(User::checkPermission($user,'change_frontend') == 0){
         return redirect('/admin')->with('error','You are not authorized to perform this request.');
         exit();
     }
@@ -89,7 +89,7 @@ public function see_gallery($id){
 }
 public function editSliderImage($id){
     $user = Auth::user();
-    if(User::checkPermission($user,'can_change_frontend') == 0){
+    if(User::checkPermission($user,'change_frontend') == 0){
         return redirect('/admin')->with('error','You are not authorized to perform this request.');
         exit();
     }
@@ -101,7 +101,7 @@ public function editSliderImage($id){
 }
 public function updateSliderImage(Request $req){
     $user = Auth::user();
-    if(User::checkPermission($user,'can_change_frontend') == 0){
+    if(User::checkPermission($user,'change_frontend') == 0){
         return redirect('/admin')->with('error','You are not authorized to perform this request.');
         exit();
     }
