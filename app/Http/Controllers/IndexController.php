@@ -15,11 +15,12 @@ class IndexController extends Controller
     
 
     public function index(){
-        $users=User::all()->count();
+        $users=User::where(['is_super_admin' => 1])->orWhere(['is_admin_group' => 1])->get()->count();
+        $donors=User::where(['is_donor' => 1])->get()->count();
         $departments=Department::all()->count();
         $batch=Batch::all()->count();
         $posts=Post::all()->count();
         $gallery = Gallery::all()->count();
-        return view('Admin.Dashboard.index',compact('users','departments','batch','posts','gallery'));
+        return view('Admin.Dashboard.index',compact('users','donors','departments','batch','posts','gallery'));
     }
 }

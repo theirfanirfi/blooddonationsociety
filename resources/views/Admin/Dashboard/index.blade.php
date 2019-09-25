@@ -23,7 +23,7 @@
                                         <div class="r4_counter db_box">
                                             <i class='pull-left fa fa-burn icon-md icon-rounded icon-warning'></i>
                                             <div class="stats">
-                                                <h4><strong>{{$users}}</strong></h4>
+                                                <h4><strong>{{$donors}}</strong></h4>
                                                 <span>Donors</span>
                                             </div>
                                         </div>
