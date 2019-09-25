@@ -79,12 +79,12 @@ class AuthenticationController extends Controller
                 if(Auth::attempt(['email' => $email, 'password' => $pass])){
                     //go to dashboard
                     $user = Auth::user();
-                    if($user->is_donor == 1 && $user->is_super_admin == 1){
-                       return redirect('/admin/addpost');
+                    if($user->is_admin_group == 1){
+                       return redirect('/admin/');
                     }else if($user->is_donor == 1){
                         return redirect('/');
                     }else if($user->is_super_admin){
-                        return redirect('/admin/addpost');
+                        return redirect('/admin/');
                     }else {
                     return redirect()->back()->with('error','No redirection page found.');
                     }

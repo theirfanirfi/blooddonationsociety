@@ -68,6 +68,8 @@ Route::get('viewDonor/{id}','DonorController@viewDonor')->name('viewDonor');
 Route::get('sendsms','SMSController@sendsmsview')->name('sendsms');
 Route::get('sendsmsPost','SMSController@sendsms')->name('sendsmsPost');
 Route::get('requestsms','SMSController@requestsms')->name('requestsms');
+Route::get('sms','SMSController@viewSentSMS')->name('sms');
+Route::get('deletesms/{id}','SMSController@deleteSMS')->name('deletesms');
 
 //gallery
 
@@ -82,6 +84,7 @@ Route::post('updateImage','GalleryController@updateImage')->name('updateImage');
 
 Route::get('addmessage','FrontMessagesController@addmessage')->name('addmessage');
 Route::post('addmessagePost','FrontMessagesController@addmessagePost')->name('addmessagePost');
+Route::post('editmessagePost','FrontMessagesController@editmessagePost')->name('editmessagePost');
 Route::get('messages','FrontMessagesController@index')->name('messages');
 Route::get('editmsg/{id}','FrontMessagesController@editmsg')->name('editmsg');
 Route::get('deletemsg/{id}','FrontMessagesController@deletemsg')->name('deletemsg');

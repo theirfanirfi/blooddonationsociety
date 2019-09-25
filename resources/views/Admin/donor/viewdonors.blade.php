@@ -6,6 +6,7 @@
                      <!-- START CONTENT -->
                      <section id="main-content" class=" ">
                         <section class="wrapper main-wrapper" style=''>
+                @include('Admin.includes.alert')
 
                             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                                 <div class="page-title">
@@ -55,12 +56,12 @@
                                                             <td>{{$user->department}}</td>
                                                             <td>
                                                              <a href="{{route('viewDonor',['id'=>$user->id])}}"><button class='btn btn-sm'><span class="fa fa-eye"></span></button></a>
-                                                    @if(User::checkPermission($user,'edit_donor') == 1)
+                                                    @if(User::checkPermission($loggedInUser,'edit_donor') == 1)
 
                                                              <a href="{{route('EditDonor',['id'=>$user->id])}}"><button class='btn btn-sm'><span class="fa fa-pencil"></span></button></a>
                                                              @endif
 
-                                                    @if(User::checkPermission($user,'delete_donor') == 1)
+                                                    @if(User::checkPermission($loggedInUser,'delete_donor') == 1)
 
                                                              <a href="{{route('deleteDonor',['id'=>$user->id])}}"><button class='btn btn-sm'><span class="fa fa-trash"></span></button></a>
                                                      @endif

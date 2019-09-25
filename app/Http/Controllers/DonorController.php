@@ -31,7 +31,8 @@ class DonorController extends Controller
 
     public function viewdonors(){
         $user = User::where(['is_donor' => 1])->get();
-        return view('Admin.donor.viewdonors',compact('user'));
+        $loggedInUser = Auth::user();
+        return view('Admin.donor.viewdonors',compact('user','loggedInUser'));
     }
 
     public function adddonor(Request $req){
@@ -100,9 +101,28 @@ class DonorController extends Controller
     }
 
     public function deleteDonor($id){
-       $delteDonor=User::find($id);
-       $delteDonor->delete();
+
+                $user = Auth::user();
+        if(User::checkPermission($user,'delete_donor') == 0){
+            return redirect('/admin')->with('error','You are not authorized to perform this request.');
+            exit();
+        }
+
+
+
+       $delteDonor=User::where(['id' => $id]);
+       if($delteDonor->count() > 0){
+        $delteDonor = $delteDonor->first();
+       if($user->id == $delteDonor->id){
+       return redirect()->back()->with('error','You cannot delete your account.');
+       }else {
+        $delteDonor->delete();
        return redirect()->back()->with('success','Donor Deleted Successfully.');
+       }
+   }else{
+       return redirect()->back()->with('error','No such user found to delete.');
+   }
+
     }
     public function EditDonor($id){
         $user = Auth::user();
@@ -123,8 +143,8 @@ class DonorController extends Controller
     public function AddEditDonorData(Request $req){
 
 
-        $user = Auth::user();
-        if(User::checkPermission($user,'edit_donor') == 0){
+        $userr = Auth::user();
+        if(User::checkPermission($userr,'edit_donor') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -152,15 +172,22 @@ class DonorController extends Controller
             return redirect()->back()->with('error','Phone number must be in digits. e.g. 03461234567');
         }
         else {
-            $checkEmail = User::where(['email' => $email]);
-            if($checkEmail->count() > 0){
-            return redirect()->back()->with('error','The email is already taken. please use another one.');
-            }else {
+
                 $user =User::find($id);
                 $user->name = $name;
                 $user->fname = $fathername;
                 $user->address = $address;
+
+if($email != $user->email){
+                $checkEmail = User::where(['email' => $email]);
+            if($checkEmail->count() > 0){
+            return redirect()->back()->with('error','The email is already taken. please use another one.');
+            }else {
                 $user->email = $email;
+            }
+            }
+
+
                 $user->batch = $batch;
                 $user->department = $department;
                 $user->semester = $semester;
@@ -174,12 +201,13 @@ class DonorController extends Controller
                 }else {
                     return redirect()->back()->with('error','Error occurred in updating the donor data. Please try again.');
                 }
-            }
+            
         }
     }
 
     public function viewDonor($id){
-        $Id=User::find($id);
-        return view('Admin.donor.donorProfile',compact('Id'));
+        $loggedInUser = Auth::user();
+        $Id = User::find($id);
+        return view('Admin.donor.donorProfile',compact('Id','loggedInUser'));
     }
 }

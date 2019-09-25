@@ -28,7 +28,7 @@
                         <div class="profile-details col-md-8 col-sm-8 col-xs-8">
 
                             <h3>
-                            <a href="ui-profile.html">{{$user->name}}</a>
+                            <a href="{{route('profile')}}">{{$user->name}}</a>
 
                                 <!-- Available statuses: online, idle, busy, away and offline -->
                                 <span class="profile-status online"></span>

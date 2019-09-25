@@ -16,7 +16,8 @@ class AdminWare
     public function handle($request, Closure $next){
         if(Auth::check()){
             $user = Auth::user();
-            if(($user->is_super_admin == 1) || ($user->is_super_admin && $user->is_donor == 1)){
+            // if(($user->is_super_admin == 1) || ($user->is_super_admin && $user->is_donor == 1)){
+            if($user->is_super_admin == 1 || $user->is_admin_group == 1){
             return $next($request);
             }else {
             Auth::logout();

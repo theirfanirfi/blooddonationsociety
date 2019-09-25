@@ -68,7 +68,7 @@
                                             <input type="hidden" name="donor_id" value="{{$Id->id}}" />
                                         </h5>
                                         </div>
-                                        @if(User::checkPermission($Id,'promote_user') == 1)
+                                        @if(User::checkPermission($loggedInUser,'promote_user') == 1)
 
                                         <div class="uprofile-buttons">
                                             <button type="submit" class="btn btn-md btn-primary">Promote to Admin group</button>

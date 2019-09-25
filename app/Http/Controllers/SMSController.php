@@ -134,4 +134,36 @@ $s->save();
 /*Print Responce*/
 echo $result;
     }
+
+
+    public function viewSentSMS(){
+        $user = Auth::user();
+
+        if(User::checkPermission($user,'send_sms') == 1){
+            $s = SMS::getSentSMS()->get();
+            return view('Admin.sms.viewsentsms',['sms' => $s]);
+
+        }else {
+            return redirect('/admin')->with('error','You are not authorized to perform this request.');
+            exit();
+        }
+    }
+
+    public function deleteSMS($id){
+        $user = Auth::user();
+
+        if(User::checkPermission($user,'send_sms') == 1){
+            $s = SMS::find($id);
+            if($s->delete()){
+                return redirect()->back()->with('success','Sent SMS record deleted.');
+            }else {
+                return redirect()->back()->with('error','Error. Please try again.');
+            }
+            //return view('Admin.sms.viewsentsms',['sms' => $s]);
+
+        }else {
+            return redirect('/admin')->with('error','You are not authorized to perform this request.');
+            exit();
+        }
+    }
 }

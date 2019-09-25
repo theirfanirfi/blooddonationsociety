@@ -8,8 +8,8 @@ use Auth;
 class UsersController extends Controller
 {
     public function usersPage(){
-        $user = Auth::user();
-        if(User::checkPermission($user,'promote_user') == 0){
+        $loggedInUser = Auth::user();
+        if(User::checkPermission($loggedInUser,'promote_user') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -17,14 +17,14 @@ class UsersController extends Controller
 
 
 
-        $user=User::where(['is_admin_group' => 1])->get();
+        $users=User::where(['is_admin_group' => 1])->get();
 
-        return view('Admin.users.users',compact('user'));
+        return view('Admin.users.users',compact('users','loggedInUser'));
     }
 
     public function promoteuser(Request $req){
-        $user = Auth::user();
-        if(User::checkPermission($user,'promote_user') == 0){
+        $loggedInUser = Auth::user();
+        if(User::checkPermission($loggedInUser,'promote_user') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
@@ -64,6 +64,7 @@ class UsersController extends Controller
             $user->can_edit_post = $editpost;
             $user->can_delete_post = $deletepost;
             $user->can_change_frontend = $frontend;
+            $user->is_donor = 0;
 
             if($adddonor == 1 || $deletedonor == 1 || $editdonor == 1 || $sendsms == 1 || $promoteuser == 1 || $answerchat == 1 ||
             $department == 1 || $batch == 1 || $addpost == 1 || $editpost == 1 || $deletepost == 1 || $frontend == 1){
@@ -83,20 +84,19 @@ class UsersController extends Controller
     }
 
     public function demoteuser($id){
-        $user = Auth::user();
-        if(User::checkPermission($user,'promote_user') == 0){
+        $loggedInUser = Auth::user();
+        if(User::checkPermission($loggedInUser,'promote_user') == 0){
             return redirect('/admin')->with('error','You are not authorized to perform this request.');
             exit();
         }
 
-
-
+if($loggedInUser->id != $id){
         if($id == null || !is_numeric($id)){
             return redirect()->back()->with('error','Invalid user Id supplied.');
         }else {
             $user = User::where(['id' => $id]);
             if($user->count() > 0){
-                $user = $user->first();
+
                 $user = $user->first();
                 $user->can_add_donor = 0;
                 $user->can_delete_donors = 0;
@@ -111,6 +111,7 @@ class UsersController extends Controller
                 $user->can_delete_post = 0;
                 $user->can_change_frontend = 0;
                 $user->is_admin_group = 0;
+                $user->is_donor = 1;
 
                 if($user->save()){
                     return redirect()->back()->with('success','Admin Demoted.');
@@ -122,5 +123,8 @@ class UsersController extends Controller
 
             }
         }
+    }else {
+            return redirect()->back()->with('error','You cannot demote your account.');
+    }
     }
 }

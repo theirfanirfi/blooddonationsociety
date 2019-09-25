@@ -5,6 +5,8 @@
                      <section id="main-content" class=" ">
                         <section class="wrapper main-wrapper" style=''>
                         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                @include('Admin.includes.alert')
+                            
                         <div class="page-title">
 
                             <div class="pull-left">
@@ -65,11 +67,11 @@
 
 
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <a href="{{route('posts')}}" style="text-decoration:none;">
+                                            <a href="{{route('ImageGallery')}}" style="text-decoration:none;">
                                                 <div class="r4_counter db_box">
                                                     <i class='pull-left fas fa-file-image icon-md icon-rounded icon-warning'></i>
                                                     <div class="stats">
-                                                        <h4><strong>{{$posts}}</strong></h4>
+                                                        <h4><strong>{{$gallery}}</strong></h4>
                                                         <span>Gallery</span>
                                                     </div>
                                                 </div>
@@ -81,11 +83,11 @@
 
 
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                            <a href="{{route('batches')}}" style="text-decoration:none;">
+                                                            <a href="{{route('usersPage')}}" style="text-decoration:none;">
                                                                 <div class="r4_counter db_box">
                                                                     <i class='pull-left fa fa-users icon-md icon-rounded icon-warning'></i>
                                                                     <div class="stats">
-                                                                        <h4><strong>{{$posts}}</strong></h4>
+                                                                        <h4><strong>{{$users}}</strong></h4>
                                                                         <span>Administrators</span>
                                                                     </div>
                                                                 </div>

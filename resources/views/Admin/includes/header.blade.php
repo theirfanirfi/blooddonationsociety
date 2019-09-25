@@ -46,6 +46,17 @@
         <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet" type="text/css"/>
         <!-- CORE CSS TEMPLATE - END -->
 
+
+        <!-- Data tables -->
+
+        <link href="{{ URL::asset('assets/plugins/datatables/css/jquery.dataTables_themeroller.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ URL::asset('assets/plugins/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+
+        <link href="{{ URL::asset('assets/plugins/datatables/css/jquery.dataTables.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="{{ URL::asset('assets/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.min.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="{{ URL::asset('assets/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="{{ URL::asset('assets/plugins/datatables/extensions/Responsive/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" media="screen"/>
+
     </head>
     <!-- END HEAD -->
 

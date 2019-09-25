@@ -5,7 +5,8 @@
                 <h2 class="g-font-size-32--xs g-font-size-36--md">Messages</h2>
             </div>
             <div class="row g-margin-b-60--xs g-margin-b-70--md">
-
+                @include('Admin.includes.alert')
+            
                 @foreach($msgs as $m)
                 <div class="col-sm-6 col-md-6 col-lg-6">
                     <div class="clearfix">

@@ -143,7 +143,7 @@ class ChatController extends Controller
             if($par->admin_id == 0){
             $par->admin_id = $user->id;
             if($par->save()){
-            $chats = Chat::where(['p_id' => $par->id,'reciever_id' => 0]);
+            $chats = Chat::where(['p_id' => $par->id]);
             // $chats->update(['reciever_id' => $user->id]);
             // echo "update";
             // exit();
